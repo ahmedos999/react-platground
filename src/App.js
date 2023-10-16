@@ -1,10 +1,14 @@
-import logo from './logo.svg';
+import { Provider } from 'react-redux';
+import store from './Store';
 import './App.css';
 import Home from './Home';
 
 function App() {
   return (
-    <Home></Home>
+    <Provider store={store}>
+      <Home></Home>
+    </Provider>
+    
   );
 }
 
