@@ -1,7 +1,9 @@
 // import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { incerment,decerment } from './redux/counter/Actions'
+// import { incerment,decerment } from './redux/counter/Actions'
+import { add,remove } from './redux/blogs/Actions'
 function Home(props) {
+    console.log(props.blogs)
     // const [counter,setCounter] =  useState(0)
     // const handleClick = ()=>{
     //     setCounter(counter+1)
@@ -16,9 +18,16 @@ function Home(props) {
 
   return (
     <div>
-        <h2>{props.count}</h2>
-        <button onClick={props.incerment}>increase</button>
-        <button onClick={props.decerment}>decrease</button>
+        {
+            props.blogs.map((blog)=>(
+                <div key={blog.id}>
+                    <h4>{blog.title}</h4>
+                    <p>{blog.body}</p>
+                </div>
+            ))
+        }
+        <button onClick={()=>props.add({id:3,title:'vue',body:'second best web dev tool'})}>add to List</button>
+        <button onClick={()=>props.remove(1)}>decrease</button>
     </div>
 
   )
@@ -26,13 +35,13 @@ function Home(props) {
 
 const mapStateToProps = state =>{
     return{
-        count:state.count
+        blogs:state.blogs
     }
 }
 const mapDispatchToProps = dispatch =>{
     return {
-        incerment:()=>dispatch(incerment()),
-        decerment:()=>dispatch(decerment())
+        add:(blog)=>dispatch(add(blog)),
+        remove:(id)=>dispatch(remove(id))
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Home)
