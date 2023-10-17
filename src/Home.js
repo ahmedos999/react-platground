@@ -1,10 +1,17 @@
-// import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 // import { incerment,decerment } from './redux/counter/Actions'
 import { add,remove } from './redux/blogs/Actions'
 function Home(props) {
     console.log(props.blogs)
-    // const [counter,setCounter] =  useState(0)
+    const [inputValue,setInputValue] =  useState('aaa')
+
+    const handleInputChange = (event)=>{
+        setInputValue(event.target.value)
+    }
+    const additemtostate= (inputValue)=>{
+        props.add({id:3,title:inputValue,body:'second best web dev tool'})
+    }
     // const handleClick = ()=>{
     //     setCounter(counter+1)
     // }
@@ -26,8 +33,14 @@ function Home(props) {
                 </div>
             ))
         }
-        <button onClick={()=>props.add({id:3,title:'vue',body:'second best web dev tool'})}>add to List</button>
+        <input
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+        />
+        <button onClick={()=>additemtostate(inputValue)}>add to List</button>
         <button onClick={()=>props.remove(1)}>decrease</button>
+        
     </div>
 
   )
