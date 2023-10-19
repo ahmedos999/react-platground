@@ -2,3 +2,10 @@ body {
   margin: 20px 0;
   text-align: center;
 }
+input{
+  display: block;
+  margin: 10px auto;
+}
+button{
+  margin: 20px;
+}
