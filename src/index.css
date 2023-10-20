@@ -8,4 +8,9 @@ input{
 }
 button{
   margin: 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: crimson;
+  color: aliceblue;
+  padding: 10px;
 }
